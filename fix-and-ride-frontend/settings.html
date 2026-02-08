@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings - Fix&Ride</title>
+  <link rel="stylesheet" href="css/modern.css" />
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">🛠️ Fix&Ride</a>
+      <nav>
+        <button class="hamburger" id="hamburger">☰</button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#bio">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="user-menu-container flex items-center gap-md">
+        <div class="user-menu" id="user-menu">
+          <div class="user-avatar" id="user-avatar" tabindex="0">
+            <img src="assets/icons/account.png" alt="User Avatar" />
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu">
+            <div class="dropdown-item"><span id="username-display" style="font-weight:600;">User</span></div>
+            <a href="profile.html" class="dropdown-item">👤 My Profile</a>
+            <a href="my-bookings.html" class="dropdown-item">📅 My Bookings</a>
+            <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+            <hr style="border-top:1px solid var(--border-color); margin:5px 0;">
+            <a href="#" id="logout-btn" class="dropdown-item" style="color:var(--danger-color);">🚪 Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="min-height: 60vh; padding-top: var(--spacing-xl);">
+    <h1>Settings</h1>
+    <div class="card" style="margin-top: var(--spacing-md); padding: var(--spacing-xl);">
+      <h3 style="margin-bottom: var(--spacing-md);">Account Settings</h3>
+
+      <div class="form-group">
+        <label class="form-label">Email Notifications</label>
+        <div class="flex items-center gap-md" style="margin-top: var(--spacing-xs);">
+          <input type="checkbox" id="notify-email" checked>
+          <label for="notify-email" style="font-weight: 400; margin:0;">Receive booking confirmations via email</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Theme</label>
+        <select class="form-input" style="max-width: 200px;">
+          <option>Light</option>
+          <option>Dark</option>
+          <option>System Default</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" style="margin-top: var(--spacing-md);">Save Changes</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="text-align: center;">
+      <p>&copy; 2025 Fix&Ride. All rights reserved.</p>
+    </div>
+  </footer>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+name: ci-cd
+
+on:
+  push:
+    branches: [ "main" ]   # deploy on main pushes; you can add tags/envs later
+
+jobs:
+  build-test-publish-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write        # push to ghcr.io
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+
+      - name: Run unit tests
+        run: mvn -B test
+
+      - name: Build JAR
+        run: mvn -B -DskipTests package
+
+      - name: Log in to GHCR
+        run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build & push Docker image
+        env:
+          IMAGE: ghcr.io/${{ github.repository }}:${{ github.sha }}
+        run: |
+          docker build -t "$IMAGE" .
+          docker push "$IMAGE"
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: 'v1.29.0'
+
+      - name: Render deployment with image tag
+        run: |
+          sed "s#IMAGE_PLACEHOLDER#ghcr.io/${{ github.repository }}:${{ github.sha }}#g" \
+            k8s/deployment.yaml.tpl > k8s/deployment.yaml
+
+      - name: Deploy to Kubernetes
+        env:
+          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}   # base64 kubeconfig
+        run: |
+          echo "$KUBECONFIG_DATA" | base64 -d > $HOME/kubeconfig
+          export KUBECONFIG=$HOME/kubeconfig
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+          kubectl apply -f k8s/ingress.yaml
+
+      - name: Wait for rollout
+        env:
+          KUBECONFIG=$HOME/kubeconfig
+        run: |
+          kubectl rollout status deployment/spring-api --timeout=120s || \
+          (kubectl rollout undo deployment/spring-api && exit 1)

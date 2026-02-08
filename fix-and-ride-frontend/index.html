@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fix&Ride - Premium Labor Services</title>
+  <!-- Modern CSS Design System -->
+  <link rel="stylesheet" href="css/modern.css" />
+  <link rel="icon" href="data:," />
+  <!-- Google Fonts for Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        🛠️ Fix&Ride
+      </a>
+
+      <nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+          ☰
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#bio">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu-container flex items-center gap-md">
+        <!-- User Menu -->
+        <div class="user-menu hidden" id="user-menu">
+          <div class="user-avatar" id="user-avatar" tabindex="0">
+            <img src="assets/icons/account.png" alt="User Avatar" />
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu">
+            <div class="dropdown-item">
+              <span id="username-display" style="font-weight:600; display:block; margin-bottom:5px;">User</span>
+            </div>
+            <a href="profile.html" class="dropdown-item">👤 My Profile</a>
+            <a href="my-bookings.html" class="dropdown-item">📅 My Bookings</a>
+            <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+            <hr style="border-top:1px solid var(--border-color); margin:5px 0;">
+            <a href="#" id="logout-btn" class="dropdown-item" style="color:var(--danger-color);">🚪 Logout</a>
+          </div>
+        </div>
+
+        <!-- Cart & Login -->
+        <div class="cart relative" id="cart">
+          <button id="login-btn" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+            Login
+          </button>
+          <!-- Cart Icon (Hidden for now or styled better if needed) -->
+          <div class="relative items-center hidden" style="display:flex; cursor:pointer;">
+            <img src="assets/icons/cart.png" alt="Cart" style="width:24px;">
+            <span id="cart-count"
+              style="position:absolute; top:-5px; right:-5px; background:red; color:white; font-size:10px; padding:2px 5px; border-radius:10px;">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero">
+    <img id="hero-image" src="assets/images/service1.png" alt="Hero Background" class="hero-bg" />
+    <div class="hero-content">
+      <h1>Your Local Fix-it-All & Mover</h1>
+      <p id="hero-caption">Professional labor, transport, and tools at your fingertips.</p>
+      <a href="#services" class="btn btn-primary" style="font-size: 1.25rem;">Book a Service</a>
+    </div>
+  </section>
+
+  <!-- About / Bio Section -->
+  <section id="bio" class="container" style="margin-bottom: var(--spacing-2xl);">
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); align-items: center;">
+      <div>
+        <h2>👋 Hey There! I'm Nazmos.</h2>
+        <p style="font-size: 1.1rem; color: var(--text-main);">
+          I’m not just a guy with tools—I’m your reliable partner for small moves, repairs, and heavy lifting.
+          With a valid driving license, my own vehicle, and years of experience in woodwork, plumbing, and furniture
+          assembly,
+          I make your life easier.
+        </p>
+        <p>
+          Whether you're moving across the city or just need a quick fix, I bring the tools and the can-do attitude.
+          Book me as easily as you shop online.
+        </p>
+      </div>
+      <div style="text-align: center;">
+        <img src="assets/images/service3.jpg" alt="Nazmos at work"
+          style="border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-height: 400px; margin: 0 auto;">
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="container">
+    <div class="flex justify-between items-center" style="margin-bottom: var(--spacing-lg);">
+      <h2>🛒 Choose Your Service</h2>
+    </div>
+
+    <!-- Using Grid instead of Carousel for modern feel, keeping ID "carousel-track" for JS compatibility if needed by drag logic, though strictly grid is better -->
+    <div id="carousel-track" class="services-grid">
+      <!-- Service 1 -->
+      <a href="booking.html?service=car-labor" class="card service-card" data-service-id="car-labor">
+        <img src="assets/images/service4.png" alt="Car + Labor" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Car + Labor</h3>
+          <p>I drive my own car and help you move small stuff or transport you.</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+
+      <!-- Service 2 -->
+      <a href="booking.html?service=labor-transporter" class="card service-card" data-service-id="labor-transporter">
+        <img src="assets/images/service2.jpg" alt="Labor + Transporter" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Labor + Transporter</h3>
+          <p>I drive a hired transporter. You pay the transporter separately.</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+
+      <!-- Service 3 -->
+      <a href="booking.html?service=labor-only" class="card service-card" data-service-id="labor-only">
+        <img src="assets/images/service3.jpg" alt="Labor Only" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Labor Only</h3>
+          <p>Heavy lifting, loading/unloading, stairs — I do it all!</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+
+      <!-- Service 4 -->
+      <a href="booking.html?service=repairs" class="card service-card" data-service-id="repairs">
+        <img src="assets/images/service7.jpg" alt="Repairs" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Repairs & Installations</h3>
+          <p>Kitchen, furniture, closets, plumbing — I bring the tools, you get the fix!</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+
+      <!-- Service 5 -->
+      <a href="booking.html?service=tool-lending" class="card service-card" data-service-id="tool-lending">
+        <img src="assets/images/service5.jpg" alt="Tool Lending" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Tool Lending</h3>
+          <p>Need tools but not the labor? Rent my professional-grade tools.</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+
+      <!-- Service 6 -->
+      <a href="booking.html?service=taxi" class="card service-card" data-service-id="taxi">
+        <img src="assets/images/service6.png" alt="Taxi Service" class="card-img" loading="lazy" />
+        <div class="card-body">
+          <h3>Taxi Service</h3>
+          <p>Emergency pickup or drop-off — I can get you there quickly and safely.</p>
+          <span class="btn btn-outline" style="width:100%; margin-top:10px;">Book Now</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Hidden arrows to prevent JS errors if strictly required by simple DOM checks, though initCarousel uses optional chaining -->
+    <button id="left-arrow" style="display:none;"></button>
+    <button id="right-arrow" style="display:none;"></button>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="container" style="max-width: 600px; margin-top: var(--spacing-2xl);">
+    <div class="card">
+      <div class="card-body">
+        <h2 style="text-align: center;">📬 Contact Me</h2>
+        <p style="text-align: center;">Need help or have a question? Reach out any time!</p>
+        <form id="contact-form">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <input type="email" class="form-input" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" rows="4" placeholder="How can I help you?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Login/Signup Modal -->
+  <div id="auth-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-auth" aria-label="Close">&times;</span>
+
+      <h2 style="text-align:center; margin-bottom:var(--spacing-md);">Welcome Back</h2>
+
+      <div class="modal-tabs">
+        <button id="tab-login" class="tab-btn active">Login</button>
+        <button id="tab-signup" class="tab-btn">Signup</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="login-email" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-input" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+      </form>
+
+      <!-- Signup Form (Hidden) -->
+      <form id="signup-form" class="auth-form hidden">
+        <div class="flex gap-md" style="margin-bottom:var(--spacing-md);">
+          <div style="flex:1;">
+            <input type="text" id="first-name" class="form-input" placeholder="First Name" required />
+          </div>
+          <div style="flex:1;">
+            <input type="text" id="last-name" class="form-input" placeholder="Last Name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="address" class="form-input" placeholder="Address" required />
+        </div>
+        <div class="form-group">
+          <input type="text" id="house-number" class="form-input" placeholder="House No." required />
+        </div>
+
+        <div class="flex gap-md" style="margin-bottom:var(--spacing-md);">
+          <div style="flex:1;"><input type="text" id="post" class="form-input" placeholder="Post Code" required /></div>
+          <div style="flex:1;"><input type="text" id="city" class="form-input" placeholder="City" required /></div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="signup-email" class="form-input" placeholder="Email" required />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="signup-password" class="form-input" placeholder="Password" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="signup-confirm" class="form-input" placeholder="Confirm Password" required />
+        </div>
+
+        <div class="form-group flex items-center gap-md">
+          <input type="checkbox" id="terms-checkbox" />
+          <label for="terms-checkbox" style="font-size:0.9rem;">I agree to the Terms and Conditions</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="signup-submit" style="width:100%;" disabled>Create
+          Account</button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div>
+        <h3>Fix&Ride</h3>
+        <p>Your trusted local partner for labor and transport.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#hero">Home</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>support@fixandride.com</p>
+        <p>+49 123 456 789</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:var(--spacing-xl); color:var(--text-muted); font-size:0.9rem;">
+      &copy; 2025 Fix&Ride. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Main module script: type=module -->
+  <script type="module" src="js/main.js"></script>
+
+  <!-- Modal Login Tab Logic adjustment to use 'hidden' class nicely -->
+  <script>
+    // Simple inline script to handle tab switching visual state if main.js doesn't fully cover the new styling
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabLogin = document.getElementById('tab-login');
+      const tabSignup = document.getElementById('tab-signup');
+      const loginForm = document.getElementById('login-form');
+      const signupForm = document.getElementById('signup-form');
+
+      if (tabLogin && tabSignup && loginForm && signupForm) {
+        tabLogin.addEventListener('click', () => {
+          tabLogin.style.borderBottom = '2px solid var(--primary-color)';
+          tabLogin.style.color = 'var(--text-main)';
+          tabSignup.style.borderBottom = 'none';
+          tabSignup.style.color = 'var(--text-muted)';
+          loginForm.classList.remove('hidden');
+          signupForm.classList.add('hidden');
+        });
+
+        tabSignup.addEventListener('click', () => {
+          tabSignup.style.borderBottom = '2px solid var(--primary-color)';
+          tabSignup.style.color = 'var(--text-main)';
+          tabLogin.style.borderBottom = 'none';
+          tabLogin.style.color = 'var(--text-muted)';
+          signupForm.classList.remove('hidden');
+          loginForm.classList.add('hidden');
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

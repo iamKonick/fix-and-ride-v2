@@ -1,0 +1,334 @@
+/* booking_modern.css - Redesigned Booking Page Styles */
+
+/* Main Interface Layout */
+.booking-interface {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin-bottom: 80px;
+    /* Space for fixed bottom bar */
+    align-items: flex-start;
+}
+
+.booking-column {
+    flex: 1;
+    min-width: 300px;
+    background: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    height: 100%;
+}
+
+.booking-column h3 {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+/* Column 1: Service List */
+.service-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.service-item {
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.service-item:hover {
+    border-color: var(--primary-color);
+    background: #eff6ff;
+}
+
+.service-item.selected {
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    font-weight: 500;
+}
+
+.service-item-price {
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+/* Column 2: Date Selection (Inline Calendar) */
+.column-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.column-header-flex h3 {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+
+.toggle-group {
+    display: flex;
+    background: var(--bg-color);
+    padding: 2px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+}
+
+.toggle-btn {
+    padding: 4px 12px;
+    border: none;
+    background: transparent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.toggle-btn.active {
+    background: white;
+    color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.month-year {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0 10px;
+}
+
+.nav-btn:hover {
+    color: var(--primary-color);
+}
+
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar th {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    padding: 8px 0;
+    font-weight: 600;
+}
+
+.calendar td {
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 0.95rem;
+    position: relative;
+    transition: background 0.2s;
+    width: 40px;
+    height: 40px;
+}
+
+.calendar td:hover:not(.empty):not(.booked) {
+    background-color: #eff6ff;
+    color: var(--primary-color);
+}
+
+.calendar td.selected {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.calendar td.booked {
+    color: #ccc;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Dot indicators */
+.calendar td .status-dot {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.calendar td.has-slots .status-dot {
+    background-color: var(--accent-color);
+}
+
+/* Legend */
+.calendar-legend {
+    margin-top: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-md);
+    font-size: 0.85rem;
+    justify-content: center;
+    color: var(--text-muted);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Calendar Selection Colors */
+.calendar td.selected {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+/* Time Slots Selection Colors */
+.time-slot-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Valid Range Highlight */
+.calendar td.in-range {
+    background-color: #dbeafe;
+}
+
+/* Close/Action buttons */
+.close-btn.action {
+    width: 100%;
+    padding: var(--spacing-md);
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    font-weight: 600;
+    margin-top: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.dot.available {
+    background: var(--accent-color);
+}
+
+.dot.booked {
+    background: #fee2e2;
+    border: 1px solid var(--danger-color);
+}
+
+/* Column 3: Time Selection */
+.time-slots-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+    list-style: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.time-slot-item {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background: white;
+    transition: all 0.2s;
+}
+
+.time-slot-item:hover:not(.disabled) {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.time-slot-item.selected {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.time-slot-item.disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+/* Bottom Bar */
+.booking-summary-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-top: 1px solid var(--border-color);
+    padding: var(--spacing-md) 0;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.summary-details {
+    display: flex;
+    gap: var(--spacing-xl);
+    font-size: 1rem;
+}
+
+.summary-details p {
+    margin: 0;
+}
+
+.summary-details span {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+@media (max-width: 768px) {
+    .booking-interface {
+        flex-direction: column;
+    }
+
+    .booking-column {
+        width: 100%;
+        min-width: auto;
+    }
+
+    .booking-summary-bar .container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .summary-details {
+        flex-wrap: wrap;
+        gap: var(--spacing-md);
+        justify-content: center;
+    }
+}

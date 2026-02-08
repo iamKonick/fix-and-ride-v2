@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Profile - Fix&Ride</title>
+  <!-- Modern CSS -->
+  <link rel="stylesheet" href="css/modern.css" />
+  <link rel="stylesheet" href="css/profile_modern.css" />
+  <link rel="icon" href="data:,">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navbar (Same as others) -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        🛠️ Fix&Ride
+      </a>
+
+      <nav>
+        <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+          ☰
+        </button>
+        <ul id="nav-links" class="nav-links">
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#bio">About</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="user-menu-container flex items-center gap-md">
+        <div class="user-menu hidden" id="user-menu">
+          <div class="user-avatar" id="user-avatar" tabindex="0">
+            <img src="assets/icons/account.png" alt="User Avatar" />
+          </div>
+          <div class="dropdown-menu" id="dropdown-menu">
+            <div class="dropdown-item">
+              <span id="username-display" style="font-weight:600; display:block; margin-bottom:5px;">User</span>
+            </div>
+            <a href="profile.html" class="dropdown-item">👤 My Profile</a>
+            <a href="my-bookings.html" class="dropdown-item">📅 My Bookings</a>
+            <a href="settings.html" class="dropdown-item">⚙️ Settings</a>
+            <hr style="border-top:1px solid var(--border-color); margin:5px 0;">
+            <a href="#" id="logout-btn" class="dropdown-item" style="color:var(--danger-color);">🚪 Logout</a>
+          </div>
+        </div>
+        <div class="cart relative" id="cart">
+          <button id="login-btn" class="btn btn-primary" style="padding: 0.5rem 1rem;">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-container">
+    <div class="profile-header">
+      <div class="profile-avatar">
+        <!-- Using a placeholder icon if custom image fails -->
+        <img src="assets/icons/account.png" alt="Profile Avatar" id="profile-avatar-img"
+          onerror="this.src='assets/icons/account.png'">
+        <button class="edit-avatar-btn">✏️</button>
+      </div>
+      <div class="profile-info">
+        <h1 id="profile-name">Nazmos S.</h1>
+        <p class="profile-role">🚗 Your Local Fix-it-All Helper</p>
+        <div class="profile-stats">
+          <div class="stat">
+            <span class="stat-number" id="completed-jobs">47</span>
+            <span class="stat-label">Jobs</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="rating">4.8</span>
+            <span class="stat-label">⭐ Rating</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" id="member-since">2023</span>
+            <span class="stat-label">Member</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-content">
+      <div class="profile-section">
+        <div class="flex justify-between items-center"
+          style="margin-bottom: var(--spacing-lg); border-bottom: 1px solid var(--border-color); padding-bottom: var(--spacing-sm);">
+          <h2 style="margin:0; border:none; padding:0;">📋 Personal Information</h2>
+          <button class="btn btn-outline" id="edit-personal-btn"
+            style="padding: 0.4rem 1rem; font-size: 0.9rem;">Edit</button>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Full Name</label>
+            <p id="user-fullname">Nazmos S.</p>
+          </div>
+          <div class="info-item">
+            <label>Email</label>
+            <p id="user-email">nazmos@fixandride.com</p>
+          </div>
+          <div class="info-item">
+            <label>Phone</label>
+            <p id="user-phone">+1 (555) 123-4567</p>
+          </div>
+          <div class="info-item">
+            <label>Address</label>
+            <p id="user-address">123 Main St, City, Country</p>
+          </div>
+          <div class="info-item">
+            <label>Status</label>
+            <span class="status-badge active">Active Member</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <h2>🔧 My Services</h2>
+        <div class="services-list">
+          <div class="service-badge">🚗 Car + Labor</div>
+          <div class="service-badge">🚚 Labor + Transporter</div>
+          <div class="service-badge">💪 Labor Only</div>
+          <div class="service-badge">🔨 Repairs</div>
+        </div>
+      </div>
+
+      <div class="profile-section">
+        <h2>📅 Recent Bookings</h2>
+        <div class="bookings-list">
+          <div class="booking-card">
+            <div class="booking-header">
+              <span class="booking-service">Car + Labor</span>
+              <span class="booking-status confirmed">Confirmed</span>
+            </div>
+            <div class="booking-details">
+              <p>📅 Tomorrow, 10:00 AM</p>
+              <p>📍 Small apartment move</p>
+            </div>
+          </div>
+        </div>
+        <a href="my-bookings.html" class="view-all-btn">View All Bookings →</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container" style="text-align: center;">
+      <p>&copy; 2025 Fix&Ride. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Login/Signup Modal -->
+  <div id="auth-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-auth" aria-label="Close">&times;</span>
+
+      <h2 style="text-align:center; margin-bottom:var(--spacing-md);">Welcome Back</h2>
+
+      <div class="modal-tabs">
+        <button id="tab-login" class="tab-btn active">Login</button>
+        <button id="tab-signup" class="tab-btn">Signup</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" id="login-email" class="form-input" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-input" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Login</button>
+      </form>
+
+      <form id="signup-form" class="auth-form hidden">
+        <div class="flex gap-md" style="margin-bottom:var(--spacing-md);">
+          <div style="flex:1;">
+            <input type="text" id="first-name" class="form-input" placeholder="First Name" required />
+          </div>
+          <div style="flex:1;">
+            <input type="text" id="last-name" class="form-input" placeholder="Last Name" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="address" class="form-input" placeholder="Address" required />
+        </div>
+        <div class="form-group">
+          <input type="text" id="house-number" class="form-input" placeholder="House No." required />
+        </div>
+
+        <div class="flex gap-md" style="margin-bottom:var(--spacing-md);">
+          <div style="flex:1;"><input type="text" id="post" class="form-input" placeholder="Post Code" required /></div>
+          <div style="flex:1;"><input type="text" id="city" class="form-input" placeholder="City" required /></div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="signup-email" class="form-input" placeholder="Email" required />
+        </div>
+
+        <div class="form-group">
+          <input type="password" id="signup-password" class="form-input" placeholder="Password" required />
+        </div>
+        <div class="form-group">
+          <input type="password" id="signup-confirm" class="form-input" placeholder="Confirm Password" required />
+        </div>
+
+        <div class="form-group flex items-center gap-md">
+          <input type="checkbox" id="terms-checkbox" />
+          <label for="terms-checkbox" style="font-size:0.9rem;">I agree to the Terms and Conditions</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="signup-submit" style="width:100%;" disabled>Create
+          Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+  <!-- <script src="js/profile.js"></script> -->
+</body>
+
+</html>
