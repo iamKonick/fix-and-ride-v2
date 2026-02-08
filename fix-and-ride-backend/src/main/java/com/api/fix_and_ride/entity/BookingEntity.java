@@ -1,6 +1,7 @@
 package com.api.fix_and_ride.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -16,10 +17,12 @@ public class BookingEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "service_id")
+    @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
     private ServiceItemEntity service;
 
     private LocalDateTime startDateTime;
@@ -31,10 +34,10 @@ public class BookingEntity {
     @Column(nullable = false)
     private BookingStatus status;
 
-    public BookingEntity() {}
+    public BookingEntity() {
+    }
 
     // getters & setters for ALL fields
-
 
     public Long getBookingId() {
         return bookingId;

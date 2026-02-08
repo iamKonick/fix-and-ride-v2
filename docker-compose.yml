@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: ./fix-and-ride-backend
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./fix-and-ride-backend/database:/app/database
+    environment:
+      - SERVER_PORT=9090
+      - SPRING_PROFILES_ACTIVE=dev
+
+  frontend:
+    build:
+      context: ./fix-and-ride-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5500:5500"
+    depends_on:
+      - backend

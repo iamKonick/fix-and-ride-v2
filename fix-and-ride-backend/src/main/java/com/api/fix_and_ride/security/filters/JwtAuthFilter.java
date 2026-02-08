@@ -27,14 +27,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserRepository userRepository;
     private final AdminUserRepository adminUserRepository;
 
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
 
         String header = request.getHeader(HttpHeaders.AUTHORIZATION);
-        String cookieHeader = request.getHeader("Cookie");
-        System.out.println("JwtAuthFilter->Raw Cookie header: " + cookieHeader);
 
         // 1) No Authorization header → let request continue unauthenticated
         if (header == null || !header.startsWith("Bearer ")) {
@@ -53,9 +50,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
             // 3) Extract email + role
             String email = jwtService.extractUserEmail(token);
-            String role  = jwtService.getRole(token);
+            String role = jwtService.getRole(token);
+            // System.out.println("JwtAuthFilter -> Token email: " + email + ", role: " +
+            // role);
 
             if (email == null || role == null) {
+                // System.out.println("JwtAuthFilter -> Email or role null in token");
                 chain.doFilter(request, response);
                 return;
             }
@@ -67,9 +67,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
 
             // 5) Check DB user exists
-            boolean exists = role.equals("ADMIN")
-                    ? adminUserRepository.findByEmail(email).isPresent()
-                    : userRepository.findByEmail(email).isPresent();
+            boolean exists;
+            if ("ADMIN".equals(role)) {
+                exists = adminUserRepository.findByEmail(email).isPresent();
+            } else {
+                exists = userRepository.findByEmail(email).isPresent();
+            }
 
             if (!exists) {
                 chain.doFilter(request, response);
@@ -77,9 +80,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             }
 
             // 6) Build authentication
-            UsernamePasswordAuthenticationToken auth =
-                    new UsernamePasswordAuthenticationToken(email, null,
-                            List.of(new SimpleGrantedAuthority("ROLE_" + role)));
+            UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(email, null,
+                    List.of(new SimpleGrantedAuthority("ROLE_" + role)));
 
             auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(auth);

@@ -48,6 +48,13 @@ cd fix-and-ride-frontend
 python3 https_server.py
 ```
 
+### Run with Docker (Recommended)
+You can run both services together using Docker Compose. See [DOCKER.md](DOCKER.md) for full details.
+
+```bash
+docker compose up --build -d
+```
+
 ## 👥 Demo Accounts
 
 ### User

@@ -47,7 +47,8 @@ public class SecurityConfig {
                                                 .requestMatchers("/api/admin/login").permitAll()
                                                 .requestMatchers("/admin/**").permitAll() // Allow static admin pages
                                                 // Admin-protected endpoints
-                                                .requestMatchers("/api/admin/booking/**").hasRole("ADMIN")
+                                                .requestMatchers("/api/admin/booking/**", "/api/admin/booking").hasRole("ADMIN")
+                                                .requestMatchers("/api/admin/users/**", "/api/admin/users").hasRole("ADMIN")
                                                 // Regular user endpoints
                                                 .requestMatchers("/api/user/booking/**").hasRole("USER")
                                                 // .requestMatchers("/api/user/service/**").hasRole("USER")

@@ -1,13 +1,12 @@
-FROM python:3-alpine
+FROM python:3.9-slim
 
-# Set working directory in the container
 WORKDIR /app
 
-# Copy your website files into the container
-COPY . /app
+# Copy the frontend files
+COPY . .
 
-# Expose port 5500
+# Expose the port used by https_server.py
 EXPOSE 5500
 
-# Run the Python HTTP server on port 5500
-CMD ["python3", "-m", "http.server", "5500", "--directory", "/app"]
+# Run the custom HTTPS server
+CMD ["python3", "https_server.py"]
